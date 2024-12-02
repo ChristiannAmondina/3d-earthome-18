@@ -1,200 +1,486 @@
-@media only screen and (min-width: 1309px) {
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* General body style */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    color: #333;
+  
+  
     
+  }
+  
+  /* Style the scrollbar itself */
+  ::-webkit-scrollbar {
+    width: 12px; /* Set the width of the scrollbar */
+    height: 12px; /* Set the height of the horizontal scrollbar */
+  }
+  
+  /* Style the track (the part the thumb slides within) */
+  ::-webkit-scrollbar-track {
+    background-color: #01011f; /* Light gray track */
+    border: 1px solid rgb(79, 84, 220); /* Adds a border around the thumb */
+  }
+  
+  /* Style the thumb (the draggable part of the scrollbar) */
+  ::-webkit-scrollbar-thumb {
+  
+    background-color: #26007f; /* Dark gray thumb */
+    border-radius: 3px; /* Rounded corners for the thumb */
+    border: 1px solid rgb(79, 142, 220); /* Adds a border around the thumb */
    
-
+  }
+  
+  /* Style the thumb on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #02000c; /* Darker color when hovered */
+  }
+  
+  /* Style the scrollbar buttons (for top and bottom scroll) */
+  ::-webkit-scrollbar-button {
+    display: none; /* Hide the scrollbar buttons */
+  }
+  
+  
+  
+  /* Header and navigation styling */
+  /* Header and navigation styling */
+  header {
+    position: fixed;
+    bottom: 0; /* Ensures the header is fixed at the top of the page */
+    left: 0; /* Ensures the header spans the full width */
+    width: 100%; /* Makes sure the header takes up the full width of the screen */
+    background-color: #000000;
+    color: #fff;
+    padding: 25px 0;
+    text-align: left; /* Aligns the content to the left inside the header */
+    z-index: 1000; /* Ensures the header is on top of other elements */
+  
+    mix-blend-mode: lighten;
+  }
+  
+  /* Optional: styling for header h1 if used */
+  .header h1 {
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  nav ul {
+    display: flex;
+    justify-content: center; /* Aligns the list items to the left */
+    list-style-type: none;
+    margin-left: 20px; /* Adds space from the left edge of the page */
+  }
+  
+  nav ul li {
+    margin: 0 15px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1.2px dashed rgb(114, 79, 220);
+    padding: 9px;
+    border-radius: 10px;
     
-    body {
-        margin: 0;
-        overflow: hidden;
-        filter: contrast(1.7);
-        height: 100vh;
+  }
+  
+  nav ul li a:hover {
+    color: #12ddf3; /* Changes the color when hovered */
+  }
+  
+  /* Section styling */
+  
+  /* Section styling */
+  section {
+    padding: 40px;
+    text-align: center;
+  }
+  
+  /* Home section */
+  #home {
+    position: relative;
+    background-color: #03010b;
+    /*background: url('/bgg.jpgy');*/
+    height: 100vh; /* Full viewport height for the 3D section */
+    display: flex;
+    flex-direction: column;
+    padding-top: 12vw;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px dashed rgb(86, 79, 220);
+  
+  }
+  #galaxy {
+    position: relative;
+    background-color: #03010b;
+    /*background: url('/bgg.jpgy');*/
+    height: 120vh; /* Full viewport height for the 3D section */
+    display: flex;
+    flex-direction: column;
+  
+    align-items: center;
+    justify-content: center;
+    border-top: 1px dashed rgb(86, 79, 220);
+  
+  }
+  
+  #home h1 {
+    font-size: 2vw;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+   font-family: fantasy;
+    padding-top: 2vw;
+    font-weight: lighter;
+  }
+  
+  #home h2 {
+    display: none;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  /* About section 
+  
+    background-color: #1c0202;
+    border-top: 1px dashed rgb(220, 79, 79);
+  
+    padding: 40px 20px;
+    color: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace;
+  */
+  #about {
+    background-color: #03010c;
+    border-top: 1px dashed rgb(220, 79, 79);
+    padding: 40px 20px;
+    color: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  }
+  
+  #about h2 {
+    font-size: 1.3vw; /* Larger heading text */
+    color: #0078da; /* Red color for the heading */
+    margin-bottom: 15px; /* Adds space below the heading */
+    font-family: 'Arial', sans-serif; /* Font for the heading */
+  }
+  
+  #about p {
+    padding: 30px;
+    text-align: left;
+    font-size: 0.8vw; /* Slightly larger text for readability */
+    line-height: 1.6; /* Increases space between lines of text */
+    color: #fce9e9; /* Darker text for better contrast */
+    font-family: 'Georgia', serif; /* A more elegant font for the paragraph */
+    text-align: justify; /* Justify text for a clean alignment */
+    margin-bottom: 15px; /* Adds space after the paragraph */
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  #about p a {
+    color: #0074da; /* Link color */
+    text-decoration: none; /* Removes underline */
+  }
+  
+  #about p a:hover {
+    text-decoration: underline; /* Underline on hover for links */
+  }
+  
+  
+  .footer{
+    background-color: #000000;
+    border-top: 1px dashed rgb(100, 79, 220);
+    padding: 20px;
+    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  
+  
+  }
+  .footer h2{
+    font-size: 0.8vw;
+    text-align: center;
+    color: #f0f0f0; 
+    opacity: 0.7;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Canvas styling */
+  canvas.webgl {
+    position: relative;
+    top: -13%;
+    border: 1px solid rgb(79, 91, 220);
+    border-style: dashed;
+    border-radius: 20px;
+    width: 110%;
+    height: 100%;
+    max-width: 95vw; /* Limit the canvas width */
+    max-height: 130vw; /* Limit the canvas height */
+    filter: contrast(3);
+  
+    background-size: cover;
+    animation: slowWiggleBackground 3s infinite ease-in-out; /* Apply slow, smooth wiggling */
+  }
+  
+  .tech1 {
+    position: fixed;
+    width: 20%; /* Adjust to fit within the screen */
+    justify-content: center;
+    padding: 10px;
+    mix-blend-mode: screen; /* Makes black areas transparent */
+    z-index: 323;
+    filter: contrast(6);
+    bottom: 1%;
+   
+    left: 0%;
+  
+  }
+  .tech1 img {
+    width: 100%;
+  
+  
+  }
+  
+  .tech2 {
+    position: fixed;
+    width: 20%; /* Adjust to fit within the screen */
+    justify-content: center;
+    padding: 10px;
+    mix-blend-mode: screen; /* Makes black areas transparent */
+    z-index: 323;
+    filter: contrast(6);
+    top: 1%;
+    right: 3%;
+    opacity: 0.7;
+  
+  }
+  .tech2 img {
+    width: 100%;
+  
+  
+  }
+  .info1 {
+    position: absolute;
+    width: 50%; /* Adjust as needed */
+    justify-content: center;
+    padding: 10px;
+    mix-blend-mode: screen; /* Makes black areas transparent */
+    z-index: 323;
+    filter: contrast(6); /* Enhance contrast */
+    bottom: 3%;
+    right: 3%;
+    opacity: 0.7;
+    color: rgb(128, 238, 236); /* Ensure text is visible against backgrounds */
+  }
+  
+  .info1 h1 {
+    display: none;
+    
+    font-size: 10px; /* Adjust font size for visibility */
+    margin-bottom: 10px;
+    color: rgb(128, 238, 236); /* Ensure text is visible against backgrounds */
+  }
+  
+  .info1 p {
+    color: rgb(128, 238, 236); /* Ensure text is visible against backgrounds */
+    font-size: 8px; /* Keep text legible */
+    text-align: left;
+    line-height: 1.5; /* Improve readability */
+    opacity: 0.8;
+  }
+  
+  /*---*/
+  
+  .info2 {
+    position: absolute;
+    width: 50%; /* Adjust as needed */
+    justify-content: center;
+    padding: 10px;
+    mix-blend-mode: screen; /* Makes black areas transparent */
+    z-index: 323;
+    filter: contrast(6); /* Enhance contrast */
+    bottom: 18%;
+    right: 3%;
+   
+    color: rgb(128, 238, 236); /* Ensure text is visible against backgrounds */
+  }
+  
+  .info2 p {
+    color: rgb(128, 238, 236); /* Ensure text is visible against backgrounds */
+    font-size: 8px; /* Keep text legible */
+    text-align: left;
+    line-height: 1.5; /* Improve readability */
+    opacity: 0.6;
+  }
+  .credits {
+    position: absolute;
+    width: 50%; /* Adjust as needed */
+    z-index: 323;
+    filter: contrast(6); /* Enhance contrast */
+    bottom: 1%; /* Adjusts the distance from the bottom */
+    right: 0%; /* Aligns the element to the right side */
+  }
+  
+  .credits h1 {
+    color: rgb(128, 238, 236); /* Ensure text is visible against backgrounds */
+    font-size: 8px; /* Keep text legible */
+    text-align: left;
+    line-height: 1.5; /* Improve readability */
+    opacity: 0.6;
+    margin: 0; /* Remove any default margin for better positioning */
+  }
+  
+  
+  
+  
+  
+  
+  
+  .notice {
+    position: fixed;
+    top: 44%;
+    left: 3.5%;
+    width: 10%; /* Adjust to fit within the screen */
+   
+    padding: 10px;
+    z-index: 323;
+   
+  }
+  
+  .notice h1 {
+    color: white;
+    font-size: 10px; /* Increased for better visibility */
+    font-weight: 700;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase; /* Make the text stand out more */
+  }
+  
+  
+  
+  .sliders {
+        background-color: #010d1e;
+        border: 2px solid #fdfdfda6;
+        border-radius: 4px;
+        border-style: double;
+        position: fixed;
         display: flex;
-        justify-content: center;
+        width: 200px;
+        height: 290px;
+        top: 5%;
+        left: 4%;
         align-items: center;
-        position: relative;
+        background-size: contain;
+        background-position: calc(10%);
+        transition: transform 0.4 ease-in-out;
+       overflow: hidden;  /*Hide overflow to prevent horizontal scrolling */
+       z-index: 210;
     }
+   
     
-    #container {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 0;
+      .sliders img {
+          cursor: pointer;
+          width: 16vw;
+          height: 28vw;
+          border: 1px solid black;
+          transition: transform 1s ease; /* Smooth transition for image changes */
+      }
+      
+      /* Animation to slide images */
+      @keyframes slide {
+          0% { transform: translateX(0); } /* Start at the current position */
+          20% { transform: translateX(0); } /* Show first image for 20% of animation duration */
+          25% { transform: translateX(-100%); } /* Move to the second image */
+          45% { transform: translateX(-100%); } /* Show second image for 20% of animation duration */
+          50% { transform: translateX(-200%); } /* Move to the third image */
+          70% { transform: translateX(-200%); } /* Show third image for 20% of animation duration */
+          75% { transform: translateX(-300%); } /* Move to the fourth image */
+          95% { transform: translateX(-300%); } /* Show fourth image for 20% of animation duration */
+          100% { transform: translateX(-400%); } /* Move back to the start position */
+      }
+      .sliders img {
+        animation: slide 50s infinite; /* Slide animation every 20 seconds */
     }
-    
-    .image1 {
-        position: absolute;
-        top: 20px;
-        left: 10%;
-        transform: translateX(-50%);
-        display: flex;
-        justify-content: center;
-        z-index: 10;
-        pointer-events: none;
+  
+      .sliders img {
+        cursor: pointer;
+        width: 13vw;
+        height: 20vw;
+        border: 1px solid black;
+        transition: transform 0.1s ease; /* Smooth transition for image changes */
     }
-    
-    .image1 img {
-        width: auto;
-        max-height: 70px;
-        pointer-events: none;
-    }
-    .image2{
-        position: absolute;
-        top: 1.7%;
-        left: 20%;
-     
-        transform: translateX(-50%);
-        display: flex;
-        justify-content: center;
-        z-index: 10;
-        pointer-events: none;
-    
-    }
-    .image2 img {
-    
-        width: 10%;
-    
-        max-height:auto;
-        pointer-events: none;
-    }
-    
-    .image3{
-        position: absolute;
-        bottom: 1.7%;
-        right: -40%;
-     
-        transform: translateX(-50%);
-        display: flex;
-        justify-content: center;
-        z-index: 10;
-        pointer-events: none;
-        
-    
-    }
-    .image3 img {
-    
-        width: 15%;
-    
-        max-height:auto;
-        pointer-events: none;
-        animation: floatEffect 6s infinite ease-in-out; /* Animation for floating */
-    }
-    .image4 {
-        position: absolute;
-        bottom: -1%;
-        left: -3%;
-        transform: translateX(-50%);
-        display: flex;
-        justify-content: center;
-        z-index: 10;
-        pointer-events: none;
-        transform: scaleX(-1);
-    
-        animation: floatEffect 6s infinite ease-in-out; /* Animation for floating */
-    }
-    
-    .image4 img {
-        width: 70%;
-        max-height: auto;
-        pointer-events: none;
-        transform: scaleX(-1);
-    }
-    
-    /* Define the floating effect */
-    @keyframes floatEffect {
-        0% {
-            transform: translateY(0); /* Starting position */
-        }
-        50% {
-            transform: translateY(-15px); /* Float up */
-        }
-        100% {
-            transform: translateY(0); /* Return to original position */
-        }
-    }
-    
-    .image5{
-        position: absolute;
-        bottom: 12%;
-        left: -2%;
-        transform: translateX(4%);
-        display: flex;
-        justify-content: center;
-        z-index: 10;
-        pointer-events: none;
-        animation: fadeInOut 20s ease-in-out forwards; /* 12 seconds for smooth fade */
-    
-    }
-    .image5 img {
-    
-        width: 36%;
-        max-height:auto;
-        pointer-events: none;
-    }
-    
-    @keyframes fadeInOut {
-        0% {
-            opacity: 0; /* Fully transparent */
-            transform: translateX(-15%) translateY(20px); /* Slightly shifted down */
-        }
-        20% {
-            opacity: 1; /* Fully visible */
-            transform: translateX(-14%) translateY(0); /* Back to original position */
-        }
-        80% {
-            opacity: 1; /* Fully visible */
-        }
-        100% {
-            opacity: 0; /* Fully transparent */
-            transform: translateX(-14%) translateY(-20px); /* Slightly shifted up */
-        }
-    }
-    
-    
-    .image6 {
-        position: absolute;
-        bottom: 13%;
-        left: 56%;
-        
-        display: flex;
-        justify-content: center;
-        z-index: 10;
-        pointer-events: none;
-        opacity: 0; /* Initially invisible */
+    .sliders h1{
        
-        animation: fadeInOut1 20s ease-in-out forwards; /* 20 seconds total duration */
-        animation-play-state: paused; /* Start paused */
+      position: absolute;
+      background-color: rgb(0, 0, 0);
+      padding-bottom: 30px;
+      padding-top: 5px;
+      color: white;
+      font-size: 10px;
+      font-weight: 100;
+      letter-spacing: 1px;
+      width: 100%;
+      animation: slide 50s infinite;
+      top: 260px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      text-align: center;
+    
     }
-    
-    .image6 img {
-        width: 75%;
-        max-height: auto;
-        pointer-events: none;
+   
+      .sliders1{
+        display: none;
+      }
+  
+  canvas.web1gl {
+    position: relative;
+    top: -7%;
+    border: 1px solid rgb(79, 91, 220);
+    border-style: dashed;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    max-width: 95vw; /* Limit the canvas width */
+    max-height: 130vw; /* Limit the canvas height */
+    filter: contrast(3);
+  
+    background-size: cover;
+    animation: slowWiggleBackground 3s infinite ease-in-out; /* Apply slow, smooth wiggling */
+  }
+  .dat-gui {
+    position: relative;
+    top: 10px; /* Adjust this to place the GUI where you want */
+    left: 10px; /* Adjust this as needed */
+    z-index: 10; /* Ensure it stays on top */
+    pointer-events: all; /* Enable interaction with the GUI */
+  }
+  
+  @keyframes slowWiggleBackground {
+    0% {
+        background-position: 0 0;
     }
-    
-    @keyframes fadeInOut1{
-        0% {
-            opacity: 0;
-            transform: translateX(-15%) translateY(20px);
-        }
-        50% {
-            opacity: 1;
-            transform: translateX(-14%) translateY(0);
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-            transform: translateX(-14%) translateY(-20px);
-        }
+    25% {
+        background-position: 3px 3px; /* Small shift for smooth wiggle */
     }
-    
-    
-    
-    
-    .youtube-audio iframe {
-        display: none; /* Hides the iframe */
+    50% {
+        background-position: -7px -7px; /* Small shift in the opposite direction */
     }
+    75% {
+        background-position: 6px -10px; /* Slight movement on both axes */
     }
+    100% {
+        background-position: 0 0;
+    }
+  }
+  

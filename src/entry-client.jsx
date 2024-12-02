@@ -1,47 +1,67 @@
 import { h, render } from 'preact';
-import { useEffect } from 'preact/hooks';
 import './assets/styles.css';
 
 function App() {
-  useEffect(() => {
-    setTimeout(() => {
-      const image = document.querySelector('.image6');
-      if (image) {
-        image.style.animationPlayState = 'running'; // Start animation
-        image.style.opacity = 1;                   // Make it visible
-      }
-    }, 13000);
-  }, []);
-
   return (
     <div>
-      <div className="image1">
-        <img src="/images/Websiteview/Namelogo.png" alt="Kami's Lookout Logo" />
+      {/* Galaxy Theme Section */}
+      <section id="home">
+        <canvas class="webgl"></canvas> {/* 3D canvas for Three.js or other 3D content */}
+
+        {/* Technology GIFs */}
+        <div class="tech1">
+          <img src="./images/GIF/tech1.gif" alt="Technology Animation 1" />
+        </div>
+        <div class="tech2">
+          <img src="./images/GIF/tech2.gif" alt="Technology Animation 2" />
+        </div>
+
+        {/* Info Section */}
+        <div class="info1">
+          <h1>Earth: Our Blue Planet</h1>
+          <p>Earth, the third planet from the Sun, is a remarkable and vibrant world that supports a vast diversity of life...</p>
+        </div>
+      </section>
+
+      {/* Daily News Section */}
+      <div className="notice">
+        <h1>DAILY NEWS!</h1>
       </div>
-      <div className="image2">
-        <img src="/images/Websiteview/goku.png" alt="Kami's Lookout Logo" />
+
+      {/* News Slider */}
+      <div class="sliders">
+        <div class="slider-item">
+          <img src="./images/news/asteroid.png" alt="Asteroid in Earth orbit" class="slider-image" />
+          <h1>Asteroid Approaching Earth's Orbit</h1>
+        </div>
+        <div class="slider-item">
+          <img src="./images/news/Firstman.png" alt="First man on the moon" class="slider-image" />
+          <h1>First Man to Walk on the Moon</h1>
+        </div>
+        <div class="slider-item">
+          <img src="./images/news/alien.png" alt="UFO" class="slider-image" />
+          <h1>Are UFOs Watching Us?</h1>
+        </div>
+        <div class="slider-item">
+          <img src="./images/news/satellite.png" alt="Global satellites" class="slider-image" />
+          <h1>Global Satellites Now Orbiting</h1>
+        </div>
+        <div class="slider-item">
+          <img src="./images/news/galaxy.png" alt="Galaxy Exploration" class="slider-image" />
+          <h1>Are We Alone?</h1>
+        </div>
       </div>
-      <div className="image3">
-        <img src="/images/Websiteview/Kami.webp" alt="Kami's Lookout Logo" />
-      </div>
-      <div className="image4">
-        <img src="/images/Websiteview/mrpopo.webp" alt="Kami's Lookout Logo" />
-      </div>
-      <div className="image5">
-        <img src="/images/Websiteview/note.png" alt="Kami's Lookout Logo" />
-      </div>
-      <div className="image6">
-        <img src="/images/Websiteview/note1.png" alt="Kami's Lookout Logo" />
-      </div>
-      <div className="youtube-audio">
-        <iframe
-          width="0"
-          height="0"
-          src="https://www.youtube.com/embed/3ceZRcNDgbY?autoplay=1&loop=1&playlist=3ceZRcNDgbY"
-          frameBorder="0"
-          allow="autoplay"
-        ></iframe>
-      </div>
+
+      {/* About Section */}
+      <section id="galaxy">
+        <canvas class="web1gl"></canvas>
+        <div class="info2">
+          <p>The Milky Way is a vast spiral galaxy...</p>
+        </div>
+        <div class="credits">
+          <h1>Made by Christian A. Balasabas 😎</h1>
+        </div>
+      </section>
     </div>
   );
 }
