@@ -175,13 +175,13 @@ const galaxyParameters = {
     size: 0.006,
     radius: 5.01,
     branches: 7,
-    spin: -1.435,
+    spin: -4.342,
     randomness: 0.328,
     randomnessPower: 3,
-    insideColor: '#117d92',  // Core color of the galaxy
-    outsideColor: '#152284', // Outer region color of the galaxy
-    waveSpeed: 0.4,
-    waveHeight: 0.1,
+    insideColor: '#2c485e',  // Core color of the galaxy
+    outsideColor: '#000000', // Outer region color of the galaxy
+    waveSpeed: 0.1,
+    waveHeight: 0,
 };
 
 let galaxyGeometry = null;
