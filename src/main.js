@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import './assets/styles.css';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import * as dat from 'dat.gui';
+import * as dat from 'lil-gui'
 
 import gsap from 'gsap';
 
@@ -166,6 +166,142 @@ moon.position.set(14, 0, -15);  // 15 units behind Earth
 
 // Add the Moon to the scene
 scene.add(moon);
+
+
+
+//-------------------------------------------
+const galaxyParameters = {
+    count: 250200,
+    size: 0.006,
+    radius: 5.01,
+    branches: 7,
+    spin: -1.435,
+    randomness: 0.328,
+    randomnessPower: 3,
+    insideColor: '#117d92',  // Core color of the galaxy
+    outsideColor: '#152284', // Outer region color of the galaxy
+    waveSpeed: 0.4,
+    waveHeight: 0.1,
+};
+
+let galaxyGeometry = null;
+let galaxyMaterial = null;
+let galaxyPoints = null;
+let galaxyOriginalPositions = null;
+
+const generateGalaxy = () => {
+    if (galaxyPoints !== null) {
+        galaxyGeometry.dispose();
+        galaxyMaterial.dispose();
+        scene.remove(galaxyPoints);
+    }
+
+    galaxyGeometry = new THREE.BufferGeometry();
+    const galaxyPositions = new Float32Array(galaxyParameters.count * 3);
+    const galaxyColors = new Float32Array(galaxyParameters.count * 3);
+
+    const insideGalaxyColor = new THREE.Color(galaxyParameters.insideColor);
+    const outsideGalaxyColor = new THREE.Color(galaxyParameters.outsideColor);
+
+    for (let i = 0; i < galaxyParameters.count; i++) {
+        const i3 = i * 3;
+
+        const radius = Math.random() * galaxyParameters.radius;
+        const spinAngle = radius * galaxyParameters.spin;
+        const branchAngle = (i % galaxyParameters.branches) / galaxyParameters.branches * Math.PI * 2;
+
+        const randomX = Math.pow(Math.random(), galaxyParameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1);
+        const randomY = Math.pow(Math.random(), galaxyParameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1);
+        const randomZ = Math.pow(Math.random(), galaxyParameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1);
+
+        galaxyPositions[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
+        galaxyPositions[i3 + 1] = randomY;
+        galaxyPositions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
+
+        const mixedColor = insideGalaxyColor.clone();
+        mixedColor.lerp(outsideGalaxyColor, radius / galaxyParameters.radius);
+
+        galaxyColors[i3] = mixedColor.r;
+        galaxyColors[i3 + 1] = mixedColor.g;
+        galaxyColors[i3 + 2] = mixedColor.b;
+    }
+
+    galaxyGeometry.setAttribute('position', new THREE.BufferAttribute(galaxyPositions, 3));
+    galaxyGeometry.setAttribute('color', new THREE.BufferAttribute(galaxyColors, 3));
+    galaxyOriginalPositions = galaxyPositions.slice();
+
+    galaxyMaterial = new THREE.PointsMaterial({
+        size: galaxyParameters.size,
+        sizeAttenuation: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+        vertexColors: true,
+    });
+
+    galaxyPoints = new THREE.Points(galaxyGeometry, galaxyMaterial);
+    scene.add(galaxyPoints);
+};
+
+generateGalaxy();
+
+
+const starFieldCount = 5000;
+const starPositionsArray = new Float32Array(starFieldCount * 3);
+const starFieldMinDistance = 50; // Previously 'minStarDistance'
+const starFieldMaxDistance = 200; // Previously 'maxStarDistance'
+
+for (let i = 0; i < starFieldCount; i++) {
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.random() * Math.PI;
+    const distance = Math.random() * (starFieldMaxDistance - starFieldMinDistance) + starFieldMinDistance;
+    const x = distance * Math.sin(phi) * Math.cos(theta);
+    const y = distance * Math.cos(phi);
+    const z = distance * Math.sin(phi) * Math.sin(theta);
+
+    starPositionsArray[i * 3] = x;
+    starPositionsArray[i * 3 + 1] = y;
+    starPositionsArray[i * 3 + 2] = z;
+}
+
+const starFieldGeometry = new THREE.BufferGeometry();
+starFieldGeometry.setAttribute('position', new THREE.BufferAttribute(starPositionsArray, 3));
+
+const starFieldMaterial = new THREE.PointsMaterial({
+    color: 0x4fffff,
+    sizeAttenuation: true,
+    size: 0.03,
+});
+
+const starField = new THREE.Points(starFieldGeometry, starFieldMaterial);
+scene.add(starField);
+
+
+let currentSectionIndex = 0;
+
+window.addEventListener('scroll', () => {
+    const scrollPositionY = window.scrollY;
+    currentSectionIndex = Math.round(scrollPositionY / sizes.height);
+
+    if (galaxyPoints) galaxyPoints.visible = currentSectionIndex === 0;
+    if (starField) starField.visible = currentSectionIndex !== 0;
+});
+
+
+const debugGUI = new dat.GUI();
+
+debugGUI.add(galaxyParameters, 'count').min(100).max(1000000).step(100).onFinishChange(generateGalaxy);
+debugGUI.add(galaxyParameters, 'size').min(0.001).max(0.1).step(0.001).onFinishChange(generateGalaxy);
+debugGUI.add(galaxyParameters, 'radius').min(0.01).max(20).step(0.01).onFinishChange(generateGalaxy);
+debugGUI.add(galaxyParameters, 'branches').min(2).max(20).step(1).onFinishChange(generateGalaxy);
+debugGUI.add(galaxyParameters, 'spin').min(-5).max(5).step(0.001).onFinishChange(generateGalaxy);
+debugGUI.add(galaxyParameters, 'randomness').min(0).max(2).step(0.001).onFinishChange(generateGalaxy);
+debugGUI.add(galaxyParameters, 'randomnessPower').min(1).max(10).step(0.001).onFinishChange(generateGalaxy);
+debugGUI.addColor(galaxyParameters, 'insideColor').onFinishChange(generateGalaxy);
+debugGUI.addColor(galaxyParameters, 'outsideColor').onFinishChange(generateGalaxy);
+debugGUI.add(galaxyParameters, 'waveSpeed').min(0).max(5).step(0.1);
+debugGUI.add(galaxyParameters, 'waveHeight').min(0).max(2).step(0.1);
+
+debugGUI.close();
 
 
 
@@ -557,6 +693,24 @@ const tick = () => {
     const elapsedTime = clock.getElapsedTime();  // Get elapsed time
     const deltaTime = elapsedTime - previousTime;
     previousTime = elapsedTime;
+
+   
+    if (galaxyPoints && galaxyOriginalPositions) {
+        const positions = galaxyPoints.geometry.attributes.position.array;
+        for (let i = 0; i < galaxyParameters.count; i++) {
+            const i3 = i * 3;
+            const x = galaxyOriginalPositions[i3];
+            const z = galaxyOriginalPositions[i3 + 2];
+            const distance = Math.sqrt(x * x + z * z);
+            positions[i3 + 1] =
+                galaxyOriginalPositions[i3 + 1] +
+                Math.sin(distance * 2 + elapsedTime * galaxyParameters.waveSpeed) *
+                galaxyParameters.waveHeight *
+                (1 - distance / galaxyParameters.radius);
+        }
+        galaxyPoints.geometry.attributes.position.needsUpdate = true;
+    }
+    
 
     controls.update(); // Update camera controls
 

@@ -1,8 +1,7 @@
 import * as THREE from 'three'
-import './assets/styles.css';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import * as dat from 'dat.gui';
+import * as dat from 'lil-gui'
 
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 // Canvas
 const canvas = document.querySelector('canvas.web1gl')
