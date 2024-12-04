@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import './assets/styles.css'; // Adjust the path as necessary
+import './assets/styles.css';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as dat from 'dat.gui';
