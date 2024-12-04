@@ -400,15 +400,18 @@
       
       /* Animation to slide images */
       @keyframes slide {
-          0% { transform: translateX(0); } /* Start at the current position */
-          20% { transform: translateX(0); } /* Show first image for 20% of animation duration */
-          25% { transform: translateX(-100%); } /* Move to the second image */
-          45% { transform: translateX(-100%); } /* Show second image for 20% of animation duration */
-          50% { transform: translateX(-200%); } /* Move to the third image */
-          70% { transform: translateX(-200%); } /* Show third image for 20% of animation duration */
-          75% { transform: translateX(-300%); } /* Move to the fourth image */
-          95% { transform: translateX(-300%); } /* Show fourth image for 20% of animation duration */
-          100% { transform: translateX(-400%); } /* Move back to the start position */
+        0% { transform: translateX(0); } /* Start at the current position */
+        20% { transform: translateX(0); } /* Show first image for 20% of animation duration */
+        25% { transform: translateX(-100%); } /* Move to the second image */
+        45% { transform: translateX(-100%); } /* Show second image for 20% of animation duration */
+        50% { transform: translateX(-200%); } /* Move to the third image */
+        70% { transform: translateX(-200%); } /* Show third image for 20% of animation duration */
+        75% { transform: translateX(-300%); } /* Move to the fourth image */
+        95% { transform: translateX(-300%); } /* Show fourth image for 20% of animation duration */
+        100% { transform: translateX(-400%); } /* Move to the fifth image */
+        120% { transform: translateX(-400%); } /* Show fifth image for 20% of animation duration */
+        125% { transform: translateX(-500%); } /* Move back to the start position */
+      
       }
       .sliders img {
         animation: slide 50s infinite; /* Slide animation every 20 seconds */

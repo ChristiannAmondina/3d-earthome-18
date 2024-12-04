@@ -383,7 +383,7 @@ scene.add(earthlight);
 
 //--------------------------------------------------------------------------------- * Particles (Asteroids)
 
-const particleTexture = textureLoader.load('/texture/asteroid.avif');
+const particleTexture = textureLoader.load('/images/texture/asteroid.avif');
 const particlesCount = 250;
 const radius = 10;
 const minDistance = 0.5;
